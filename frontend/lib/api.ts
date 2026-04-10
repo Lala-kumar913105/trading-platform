@@ -3,7 +3,8 @@
 import { getAuthToken } from "@/lib/auth";
 import type { AuthResponse, ExchangeStatus, Trade, Wallet } from "@/lib/types";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || "https://trading-platform-backend-4i2f.onrender.com";
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = getAuthToken();
@@ -37,7 +38,8 @@ export const api = {
       body: JSON.stringify(payload),
     }),
 
-  me: () => request<{ id: number; name: string; email: string; created_at: string }>("/api/auth/me"),
+  me: () =>
+    request<{ id: number; name: string; email: string; created_at: string }>("/api/auth/me"),
 
   getPaperWallet: () => request<Wallet>("/api/wallet/paper"),
 
